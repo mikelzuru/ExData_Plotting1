@@ -1,0 +1,8 @@
+dataColName <- read.table("household_power_consumption.txt",header=FALSE,nrow=1,sep=";",stringsAsFactors=FALSE)
+data <- read.table("household_power_consumption.txt",header=FALSE,nrow=2880,sep=";",stringsAsFactors=FALSE,skip=66637)
+data$V10 <- as.Date(data[,1],format="%d/%m/%Y")
+data$v11 <- strptime(paste(data[,1],data[,2]),format="%d/%m/%Y %H:%M:%S")
+par(mfrow=c(1,1))
+hist(data[,3],xlab="Global Active Power (kilowatts)",col="red",main="Global Active Power")
+dev.copy(png,"plot1.png")
+dev.off()
